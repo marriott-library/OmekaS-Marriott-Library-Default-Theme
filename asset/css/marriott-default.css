@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css?family=Muli|Prata');
+
+body {
+	background-color: #edebe7;
+	font-family: 'Muli', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
+    font-size: 16px;
+    color: #383739;
+}
+	
+/* Theme Logo Branding */	
+
+header .marriott-branding {
+	background: #000;
+    height: 66px;
+    padding: 13px;
+    margin-top: -20px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+header .marriott-branding img {
+	width: 300px;
+}
+header nav {
+	background: #bdbab4;
+	border-top: 1px solid #bdbab4;
+	border-bottom: 1px solid #bdbab4;
+}
+
+header>* {
+	max-width: inherit ;
+}
+
+/* General Typography */	
+
+#content a {
+	border-bottom: thin dotted #ccc;
+	color: #4a81a1;
+}
+h1, h2, h3, h4, h5{
+	margin: 5px 0 5px;
+	Font-family: 'Prata', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
+	color: #383739;
+}
+h3 {line-height: 29px; font-size: 21px;}
+h2 {font-size: 35px;}
+p { margin: 3px 0 16px 0;}
+
+body.resource #content>h2:first-of-type+h3 {
+	margin-top: 0 ;
+	background: #fff;
+}
+.text-center {
+	text-align: center;
+}
+.breadcrumbs {
+    font-size: 15px;
+    margin: 30px 0 0 0;
+}
+
+/* Exhibit of Exhibits Layout */
+
+.item-masonry {
+	padding: 10px;
+	margin-bottom: 20px;
+	vertical-align: top;
+}
+.item-masonry .inner {
+	position: relative;
+	border-left: 1px solid  #bdbab4;
+	border-bottom: 1px solid  #bdbab4;
+	padding: 15px;
+	display: inline-block;
+    margin: 0 0 1em;
+    width: 100%;
+}
+ .item-masonry a {
+	border-bottom: none !important;
+}
+.view_exhibit { 
+	background: #edebe7;
+	border-bottom: none !important;
+	text-transform: uppercase;
+	bottom: -14px;
+	position: absolute;
+    padding: 0 5%;
+    margin-left: 10%;
+    width: 83%;
+}
+.view_exhibit:hover {
+	color: #cc0000 !important;
+}
+.new::before {
+    content: 'New!';
+    position: absolute;
+    background: #cc0000;
+    color: #fff;
+    padding: 3px 15px;
+    }
+.masonry  {
+	display: flex;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	height: 100%;
+}
+.item-masonry  {
+	width: 16%;
+}
+@media only screen and (max-width: 1260px) {
+    .item-masonry  {
+		width: 25%;	
+	}
+}
+@media only screen and (max-width: 1024px) {
+    .item-masonry  {
+		width: 25%;
+	}
+	.view_exhibit { 
+		font-size: 13px;
+	}
+}
+@media only screen and (max-width: 799px) {
+    .item-masonry  {
+    	width: 33%;
+	}
+	.view_exhibit { 
+		font-size: 12px;
+	}
+}
+@media only screen and (max-width: 500px) {
+    .item-masonry  {
+		width: 50%;
+	}
+	.view_exhibit { 
+		font-size: 11px;
+
+	}
+} 
+
+
+/* Temporary Font Awesome Fix */
+
+#search form button[type="submit"]:before, header nav:before, header nav>ul>li>a:not(:only-child):after  {
+	font-family: 'Font Awesome 5 Free' !important ;
+}
+.clearfix {
+    overflow: auto;
+}

@@ -1,6 +1,6 @@
-## Marriott Library Default Omeka S Theme 
+## Marriott Library Default OmekaS Theme
 
-Omeka S is a web publication system for universities, galleries, libraries, archives, and museums. It consists of a local network of independently curated exhibits sharing a collaboratively built pool of items, media, and their metadata.
+OmekaS is a web publication system for universities, galleries, libraries, archives, and museums. It consists of a local network of independently curated exhibits sharing a collaboratively built pool of items, media, and their metadata.
 
 See the [user manual](https://omeka.org/s/docs/user-manual) for more information.
 
@@ -16,7 +16,7 @@ To add this theme to the site using FTP
 * Upload the zipped theme to the /themes folder
 * Unzip the module
 
-## Theme Usage 
+## Theme Usage
 
 ### Modifying Theme Styles
 
@@ -27,9 +27,9 @@ This theme uses custom styles found in `marriott-default.css` from `asset/css/`
 
 ### Changing the top header logo and logo link
 
-* Add your logo to the themes `images/` folder. 
+* Add your logo to the themes `images/` folder.
 * Open `layout.phtml` from `view/layout/`
-* Update the logo file name, alt, and link inside <!-- Header Branding --> 
+* Update the logo file name, alt, and link inside `<!-- Header Branding -->`
 
 ### Using the Masonry Item Layout
 

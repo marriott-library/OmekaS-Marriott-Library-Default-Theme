@@ -1,0 +1,36 @@
+/* Item View */
+
+.item-display .properties {
+    display: flex;
+    flex-direction: row; 
+    justify-content: left;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+.item-display .properties .property {
+    margin-bottom: 2rem;
+	padding-right: 3%;
+}
+.item-display .properties .property {
+    width: 20%;
+}
+
+.item-display .media-list {
+    display: none;
+}
+
+@media only screen and (max-width: 1200px) {
+	.item-display .properties .property {
+		width: 25%;
+	}	
+}
+@media only screen and (max-width: 900px) {
+	.item-display .properties .property {
+		width: 50%;
+	}	
+}
+@media only screen and (max-width: 700px) {
+	.item-display .properties .property {
+		width: 100%;
+	}	
+}

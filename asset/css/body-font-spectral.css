@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+
+body {
+	font-family: "Spectral",Georgia,serif;
+}
+
+p {
+	margin-bottom: 30px;
+	font-size: 17px;
+}
+
+.caption p, .item-showcase h3, .item-showcase .resource.item:not(:only-child) h3, .attachments h3, .medium .item.resource > h3, .square .item.resource > h3 {
+   font-family: "Spectral",Georgia,serif;
+}

@@ -1,0 +1,192 @@
+.nav-search-btn, .nav-search-btn::after, #search-container, #search form button[type="submit"]::before  {
+	display: none;
+}
+
+header .marriott-branding {
+	margin-bottom: 0;
+	padding: 13px 10px 0 0;
+	height:90px;
+	text-align: center;
+}
+header {
+	position: fixed;
+	width: 250px;
+	height: 100%;
+	top: 0;
+	left: 0;
+	margin: 0;
+	border-bottom: none;
+	background-color: #f0efec;
+	overflow-y: auto;
+	border-right: 1px solid transparent;
+	overflow-x: hidden;
+}
+
+body {
+	padding-left: 250px;
+	position: relative;
+}
+#content[role="main"] {
+	padding: 30px;
+	width: 100%;
+	max-width: 100%;
+	min-height: calc(100vh - 60px);
+}
+.site-title h1 {
+	padding-right: 0;
+}
+.site-title {
+	padding: 0 0 60px 0;
+	text-align: center;
+	display: block;
+}
+
+
+header nav {
+	padding: 0;
+	background-color: transparent;
+	border-top: none;
+	border-bottom: none;
+}
+header nav ul.navigation {
+	margin-left: 0;
+	display: block;
+}
+header nav ul.navigation > li, header nav ul.navigation > li:not(:last-child) {
+	margin-right: 0;
+	display: block;
+}
+header nav > ul > li > a {
+	margin: 0;
+	display: block;
+	padding: 10px 15px;
+	height: auto;
+   line-height: 1.35em;
+}
+header nav > ul > li > .parent-link > a  {
+	
+}
+header nav ul .parent a, header nav > ul > li > .parent-link > a   {
+   width: 100%;
+   padding: 8px 15px 8px 17px;
+   line-height: 1.35em;
+   
+}
+header nav > ul > li.active > ul > li > a::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #eee;
+  margin-right: 4px;
+  margin-bottom: 2px;
+   margin-left: -15px;
+}
+
+header nav ul.navigation > li > ul {
+	position: relative;
+	display: block;
+	left: 0;
+	padding: 0;
+	background: rgba(255,255,255, .7);
+	border: solid #ababab;
+    border-top-width: medium;
+    border-right-width: medium;
+    border-bottom-width: medium;
+    border-left-width: medium;
+	border-width: 1px 0;
+}
+header nav ul.navigation > li:hover > ul {
+	padding: 0;
+	border: solid #ababab;
+    border-top-width: medium;
+    border-right-width: medium;
+    border-bottom-width: medium;
+    border-left-width: medium;
+	border-width: 1px 0;
+}
+header nav ul.navigation > li > ul > li {
+	width: 100%;
+	padding-bottom: 0;
+	font-weight: 500;
+	padding: 0 15px;
+}
+
+header nav ul.navigation > li:hover > ul::after {
+	left: 0;
+	right: 0;
+	border-bottom: none;
+	border-top: none;
+}
+
+header nav.position-left ul.navigation > li > ul {
+transition: opacity 1s ease-out;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+header nav.position-left ul.navigation > li.active ul {
+opacity: 1;
+    height: auto;
+}
+
+header nav > ul > li > ul > li.active > a {
+   
+   margin-left: 0em;
+}
+header nav > ul > li > ul > li.active > a::before {
+  margin-left: -20px;
+}
+
+header nav ul.open > li, header nav ul li {
+   border: none;
+}
+
+@media screen and (min-width: 800px) {
+	header nav ul.navigation > li:hover > ul::after {
+		background-color: transparent;
+		border-bottom: none;
+		border-top: none;
+	}
+   header nav > ul > li > .parent-link a::after {
+   rotate: -90deg;
+   }
+   header nav > ul > li.active > .parent-link a::after {
+      rotate: 0deg;
+   }
+}
+@media only screen and (max-width: 799px) { 
+	header {
+		position: relative;
+		width: 100%;
+		height: initial;
+		top: 0;
+		left: 0;
+		margin: 0;
+		border-bottom: none;
+		overflow: initial;
+	}
+	body {
+		padding-left: 0px;
+		position: relative;
+	}
+	.site-title {
+		padding: 0;
+	}
+	header .marriott-branding {
+		margin-bottom: 20px;
+		padding: 20px 20px 0 0;
+		text-align: left;
+		height: 62px;
+	}
+	header nav ul.navigation > li > ul, header nav ul.navigation > li:hover > ul  {
+		padding: 0;	
+		border: none;
+	}
+
+}
+
+.bg-cover {
+	margin: 0 -30px;
+}

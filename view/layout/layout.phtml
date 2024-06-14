@@ -1,22 +1,26 @@
 <?php
 $escape = $this->plugin('escapeHtml');
+$siteTitle = $site->title();
 $this->htmlElement('html')->setAttribute('lang', $this->lang());
 $this->headMeta()->setCharset('utf-8');
 $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1');
-$this->headTitle($this->setting('installation_title', 'Omeka S'))->setSeparator(' · ');
+$this->headTitle($siteTitle)->setSeparator(' · ');
+$this->headTitle()->append($this->setting('installation_title', 'Omeka S'));
 $this->headLink()->prependStylesheet($this->assetUrl('css/style.css'));
 $this->headLink()->appendStylesheet($this->assetUrl('css/marriott-default.css'));
+$this->headLink()->appendStylesheet($this->assetUrl('css/slick-theme.css'));
+$this->headLink()->appendStylesheet($this->assetUrl('css/bootstrap-grid.min.css'));
 $this->headLink()->prependStylesheet($this->assetUrl('css/iconfonts.css', 'Omeka'));
+$this->headLink()->prependStylesheet('//fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700italic,700');
+$this->headLink()->prependStylesheet('//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css');
 $this->headScript()->prependFile($this->assetUrl('js/default.js'));
+$this->headScript()->prependFile('//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js');
 $this->headScript()->prependFile($this->assetUrl('js/global.js', 'Omeka'));
 $this->headScript()->prependFile($this->assetUrl('vendor/jquery/jquery.min.js', 'Omeka'));
+$this->headScript()->appendFile($this->assetUrl('js/collapse.js'));
+$this->jsTranslate();
 $this->trigger('view.layout');
-$title = $this->pageTitle($site->title());
-$logo = $this->themeSettingAssetUrl('logo');
-if ($logo):
-    $title = '<img src="' . $this->escapeHtml($logo) . '">';
-endif;
-$userBar = $this->partial('common/user-bar', ['site' => $site]);
+$userBar = $this->userBar();
 ?>
 <?php echo $this->doctype(); ?>
 <?php echo $this->htmlElement('html'); ?><head>
@@ -25,31 +29,91 @@ $userBar = $this->partial('common/user-bar', ['site' => $site]);
         <?php echo $this->headLink(); ?>
         <?php echo $this->headStyle(); ?>
         <?php echo $this->headScript(); ?>
+        
+        <style>
+            <?php if ($accentColor = $this->themeSetting('accent_color')): ?>
+            a:link,
+            a:visited {
+                color: <?php echo $accentColor; ?>
+            }
+            
+            a:active,
+            a:hover {
+                color: <?php echo $accentColor; ?>;
+                opacity: .75;
+            }
+            <?php endif; ?>
+        </style>
+	
+	<!-- Theme Option css -->	
+	<?php if ($this->themeSetting('heading_font') == 'second'): ?>
+	    <link href="/themes/marriott-default/asset/css/heading-font-encodesans.css" rel="stylesheet"/>
+	<?php elseif ($this->themeSetting('heading_font') == 'third'): ?>
+	    <link href="/themes/marriott-default/asset/css/heading-font-montserrat.css" rel="stylesheet"/>
+   <?php elseif ($this->themeSetting('heading_font') == 'fourth'): ?>
+	    <link href="/themes/marriott-default/asset/css/heading-font-lato.css" rel="stylesheet"/>
+   <?php elseif ($this->themeSetting('heading_font') == 'fifth'): ?>
+	    <link href="/themes/marriott-default/asset/css/heading-font-roboto-serif.css" rel="stylesheet"/>
+	<?php endif; ?>
+	
+	<?php if ($this->themeSetting('body_font') == 'second'): ?>
+	    <link href="/themes/marriott-default/asset/css/body-font-spectral.css" rel="stylesheet"/>
+	<?php elseif ($this->themeSetting('body_font') == 'third'): ?>
+	    <link href="/themes/marriott-default/asset/css/body-font-montserrat.css" rel="stylesheet"/>
+   <?php elseif ($this->themeSetting('body_font') == 'fourth'): ?>
+	    <link href="/themes/marriott-default/asset/css/body-font-lato.css" rel="stylesheet"/>
+	<?php endif; ?>
+
+	
+	<?php if ($this->themeSetting('header_layout') == 'second'): ?>
+	    <link href="/themes/marriott-default/asset/css/left-header.css" rel="stylesheet"/>
+	<?php endif; ?>
+	
+	<?php if ($this->themeSetting('item_meta_layout') == 'second'): ?>
+	    <link href="/themes/marriott-default/asset/css/item-meta-layout-condensed.css" rel="stylesheet"/>
+	<?php endif; ?>
+	<?php if ($this->themeSetting('showcase_display') == 'second'): ?>
+	    <link href="/themes/marriott-default/asset/css/showcase-maxHeight.css" rel="stylesheet"/>
+	<?php endif; ?>
+	<?php if ($this->themeSetting('showcase_display') == 'third'): ?>
+	    <link href="/themes/marriott-default/asset/css/showcase-block.css" rel="stylesheet"/>
+	<?php endif; ?>
     </head>
 
     <?php echo $this->htmlElement('body'); ?>
-        <?php echo $userBar; ?>
         
-    <header>
-<!-- Header Branding -->		
-			<div class="marriott-branding"><a href="https://exhibits.lib.utah.edu"><img src="/themes/marriott-default/images/marriottLibraryLogoLight.png" alt="J. Willard Marriott Library Logo" /></a></div>
-<!--End Header Branding -->		       
-            <?php if ($this->themeSetting('logo')): ?>
-            <a href="<?php echo $site->url(); ?>" class="site-title"><img src="<?php echo $this->themeSettingAssetUrl('logo'); ?>" title="Logo"></a>
-            <?php else: ?>
-            <a href="<?php echo $site->url(); ?>" class="site-title"><?php echo $this->pageTitle($site->title()); ?></a>
-            <?php endif; ?>
-            <div id="search" >
-                <?php echo $this->partial('common/search-form'); ?>
-            </div>
-
-            <nav>
+    <a id="skipnav" href="#content"><?php echo $this->translate('Skip to main content'); ?></a>
+        <?php echo $userBar; ?>
+<div class="marriott-branding"><a href="https://utah.edu" class="ulogo"><img src="/themes/marriott-default/images/ulogo.png" alt="University of Utah U Logo" /></a> <a href="https://lib.utah.edu" class="lib-link">J. Willard Marriott Library</a><span class="breadcrumb"></span><a href="https://exhibits.lib.utah.edu">Digital Exhibitions</a></div>
+        <header>
+			
+			<div class="site-title-container">
+				
+					<a href="<?php echo $site->url(); ?>" class="site-title">
+						<h1>
+					<?php if ($this->themeSetting('logo')): ?>
+						<img src="<?php echo $this->themeSettingAssetUrl('logo'); ?>" alt="<?php echo $escape($siteTitle); ?>" />
+					<?php else: ?>
+						<?php echo $escape($siteTitle); ?>
+					<?php endif; ?>
+						</h1>
+					</a>
+				
+				<button class="btn nav-search-btn" onclick="document.getElementById('search-container').classList.toggle('closed');"> </button>
+			</div>
+            <nav <?php if ($this->themeSetting('header_layout') == 'second'): ?>class="position-left"<?php endif; ?>>
             <?php
             echo $site->publicNav()->menu()->renderMenu(null, [
                 'maxDepth' => $this->themeSetting('nav_depth') - 1
             ]);
             ?>
             </nav>
+			
+			<div id="search-container" class="closed" >
+				<div id="search">
+                	<?php echo $this->partial('common/search-form'); ?>
+				</div>
+            </div>
         </header>
         <div id="content" role="main">
             <?php echo $this->content; ?>
@@ -58,8 +122,61 @@ $userBar = $this->partial('common/user-bar', ['site' => $site]);
             <?php if ($footerContent = $this->themeSetting('footer')): ?>
             <?php echo $footerContent; ?>
             <?php else: ?>
-                <?php echo $this->translate('Powered by Omeka S'); ?>
+			<?php echo $this->translate('Powered by Omeka S'); ?> 
             <?php endif; ?>
+			| <a href="https://exhibits.lib.utah.edu/login">Log in</a>
         </footer>
+<!-- Theme Customization CSS Elements -->
+<style>
+<?php if ($this->themeSetting('logobanner_bg_color')): ?>
+	header { background-color: <?php echo $this->themeSetting('logobanner_bg_color'); ?>; }	
+<?php endif; ?>	
+<?php if ($this->themeSetting('header_border_color')): ?>
+	header { border-color: <?php echo $this->themeSetting('header_border_color'); ?>; }	
+<?php endif; ?>		
+<?php if ($this->themeSetting('logobanner_text_color')): ?>
+	header h1 { color: <?php echo $this->themeSetting('logobanner_text_color'); ?>; }
+	.nav-search-btn::after { color: <?php echo $this->themeSetting('logobanner_text_color'); ?>; }
+<?php endif; ?>		
+<?php if ($this->themeSetting('body_bg_color')): ?>
+	body { background-color: <?php echo $this->themeSetting('body_bg_color'); ?>; }	
+<?php endif; ?>
+<?php if ($this->themeSetting('body_text_color')): ?>
+	body { color: <?php echo $this->themeSetting('body_text_color'); ?>; }	
+<?php endif; ?>
+<?php if ($this->themeSetting('body_heading_color')): ?>
+	h1, h2, h3, h4, h5, h6 { color: <?php echo $this->themeSetting('body_heading_color'); ?>; }	
+<?php endif; ?>
+<?php if ($this->themeSetting('body_link_color')): ?>
+	#content a { color: <?php echo $this->themeSetting('body_link_color'); ?>; }	
+<?php endif; ?>	
+<?php if ($this->themeSetting('nav_bg_color')): ?>
+	header nav { 
+		background-color: <?php echo $this->themeSetting('nav_bg_color'); ?>; 
+		border-color: <?php echo $this->themeSetting('nav_bg_color'); ?>; }
+	header nav ul.navigation > li > ul { background-color: <?php echo $this->themeSetting('nav_bg_color'); ?>;}
+<?php endif; ?>
+<?php if ($this->themeSetting('nav_link_color')): ?>
+	header nav ul.navigation a { color: <?php echo $this->themeSetting('nav_link_color'); ?> !important; }	
+<?php endif; ?>
+<?php if ($this->themeSetting('nav_link_hover_bgcolor')): ?>
+	header nav ul.navigation a:hover { background: <?php echo $this->themeSetting('nav_link_hover_bgcolor'); ?> !important; }	
+<?php endif; ?>	
+<?php if ($this->themeSetting('nav_link_active_bgcolor')): ?>
+	header ul.navigation > li.active, header ul.navigation ul li.active  { background: <?php echo $this->themeSetting('nav_link_active_bgcolor'); ?> !important; }	
+<?php endif; ?>
+<?php if ($this->themeSetting('nav_link_active_textcolor')): ?>
+	header nav ul li.active .parent-link a, header ul.navigation ul li.active a, header nav ul  li.active > a { color: <?php echo $this->themeSetting('nav_link_active_textcolor'); ?> !important; }	
+<?php endif; ?>	
+<?php if ($this->themeSetting('nav_alignment') == 'second'): ?>
+		header nav ul.navigation {justify-content: center;}
+		header nav ul.navigation li a {text-align: center;}
+		header nav > ul > li > .parent-link > a  { width: 100%;}
+	<?php elseif ($this->themeSetting('nav_alignment') == 'third'): ?>
+	    header nav ul.navigation {justify-content: right;  }
+		header nav ul.navigation li a {text-align: right;}
+	<?php endif; ?>	
+
+</style>
     </body>
 </html>

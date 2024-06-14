@@ -19,12 +19,16 @@ td {
 
 header {
     position: relative;
-    padding: $spacing-m 0 0 0;
+    padding: $spacing-m 0 0;
     margin-bottom: 2 * $spacing-l;
 }
 
 header > * {
     padding: 0 (2 * gutter());
+}
+
+header > h1 {
+    margin: $spacing-s auto;
 }
 
 /* @end */
@@ -40,7 +44,7 @@ footer {
 /* @group ----- Navigation ----- */
 
 header nav {
-    margin: $spacing-m auto 0;
+    margin: 0 auto !important;
     position: static;
     padding: 0 (2 * gutter());
 }
@@ -78,13 +82,11 @@ header nav > ul ul:hover > li {
 header nav ul.navigation {
     margin-left: -$spacing-s;
     position: static;
+    display: flex;
+    align-items: flex-end;
 
     li ul:before {
         display: none;
-    }
-
-    & > li {
-        display: inline-block;
     }
 
     & > li:not(:last-child) {
@@ -99,8 +101,6 @@ header nav ul.navigation {
         padding: 0;
         list-style: none;
         width: 100%;
-        border: solid $gray;
-        border-width: 1px 0;
         padding: ($spacing-m - 1px) 0 ($spacing-s - 1px);
         display: flex;
         flex-direction: row;
@@ -125,6 +125,7 @@ header nav ul.navigation {
             top: 0;
             bottom: 0;
             border-bottom: 1px solid $light;
+            border-top: 1px solid $light;
             z-index: -1;
         }
     }
@@ -142,16 +143,29 @@ header nav ul.navigation {
         list-style-type: none;
         height: auto;
     }
+    
+    li.parent {
+        position: static;
+    }
 }
 
 header nav > ul > li > a {
     margin: $spacing-s;
-    height: $base-line-height;
+}
+
+header nav > ul > li > .parent-link {
+    display: inline-block;
+    width: 100%;
+}
+
+header nav > ul > li > .parent-link > a {
+    margin: $spacing-s;
+    width: 100%;
 }
 
 /* All top-level nav items with siblings are parent items and get an arrow. */
-header nav > ul > li > a:not(:only-child):after {
-    font-family: "FontAwesome";
+header nav > ul > li > .parent-link a:after {
+    font-family: "Font Awesome 5 Free";
     content: "\f107";
     display: inline-block;
     margin-left: $spacing-s;
@@ -162,10 +176,17 @@ header nav > ul li:hover ul li {
     padding: 0;
 }
 
+.child-toggle {
+    display: none;
+}
+
 /* Second and Third level items */
-header nav > ul > li > ul > li a,
-header nav > ul > li > ul > li > ul > li a {
+header .parent ul a {
     padding-left: 0;
+}
+
+header .parent .parent .parent ul a {
+    padding-left: .5 * $spacing-l;
 }
 
 .sub-menu ul {
@@ -227,7 +248,7 @@ ul.resource-list .resource img ~ * {
 
 /* @group ----- Item Set ----- */
 
-body.item-set #content {
+body.item-set.item #content {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
@@ -264,6 +285,20 @@ body.item-set .metadata ~ nav.pagination:first-of-type {
     margin-bottom: 0;
 }
 
+/* @group ----- Search ----- */
+
+.results > ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.results > ul > li {
+  width: calc(50% - #{$spacing-l});
+  
+  &:nth-child(2n) {
+    margin-left: $spacing-l;
+  }
+}
 
 /* @end */
 

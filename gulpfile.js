@@ -10,10 +10,10 @@ gulp.task('css', function () {
     return gulp.src('./asset/sass/*.scss')
         .pipe(sass({
             outputStyle: 'compressed',
-            includePaths: ['../../node_modules/susy/sass']
+            includePaths: ['node_modules/susy/sass']
         }).on('error', sass.logError))
         .pipe(postcss([
-            autoprefixer({browsers: ['> 5%', '> 5% in US', 'last 2 versions']})
+            autoprefixer()
         ]))
         .pipe(gulp.dest('./asset/css'));
 });

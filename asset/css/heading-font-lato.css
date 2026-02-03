@@ -29,7 +29,6 @@ h5 {
 }
 header nav > ul > li > a, header nav > ul > li > .parent-link > a, header nav ul.navigation > li > ul > li {
 	font-family: 'Lato', sans-serif;
-	text-transform: uppercase;
 	font-size: 13px;
 	letter-spacing: .5px;
 	font-weight: 700;

@@ -1,5 +1,3 @@
-var Omeka = {};
-
 (function($) {
     function fixIframeAspect() {
         $('iframe').each(function () {
@@ -21,7 +19,6 @@ var Omeka = {};
             }
         }
     }
-
 
     $(document).ready(function() {
         $('header nav').addClass('closed');
@@ -54,28 +51,9 @@ var Omeka = {};
             childToggle.attr('aria-label', expandString);
           }
         });
-       
-       // Add class to sensitive content
-       $('img').each(function(i) {
-          var self = $(this);
-          var src = self.attr('src');
-          if (src.match('57c92f2ecc3f48be67aa50a5746dea014a2f3acd.jpg')) {
-              self.addClass('sensitive');
-              $("body.item #uv-1").css("opacity", "0");
-              $(".show h3").append('<div id="sensitive">This image is hidden due to its sensitive content. Do you wish to continue?<br><button id="show">Continue</button></div>');
-          }
-      });
-       $("body.item #show").click(function(){
-           $("#uv-1").css("opacity", "1");
-           $("#sensitive").hide();
-        });
         
         // Maintain iframe aspect ratios
         $(window).on('load resize', framerateCallback(fixIframeAspect));
         fixIframeAspect();
     });
 })(jQuery);
-
-
-
-

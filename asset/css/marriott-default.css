@@ -62,6 +62,9 @@ body {
  border-bottom: 1px solid #c00;
  color: #fff;
 }
+.marriott-branding a:visited {
+ color: #fff;
+}
 .marriott-branding img {
  width: 41px;
  height: auto;
@@ -92,10 +95,10 @@ header nav > ul > li > .parent-link > a {
  padding: 7.5px;
 }
 header ul.navigation > li.active {
- background: #000;
+background: rgba(0, 0, 0, .05);
 }
 header ul.navigation > li.active > a, header nav > ul > li.active > .parent-link > a {
- color: #fff;
+ /* color: #fff; */
 }
 header nav ul .child-toggle {
  background: transparent;
@@ -106,7 +109,7 @@ header nav ul .child-toggle {
   background: rgba(134, 110, 110, 0.25);
  }
  header ul.navigation > li.active a {
-  color: #fff;
+   /*color: #fff; */
  }
  header .marriott-branding {
   margin-top: 0;
@@ -128,6 +131,9 @@ header > * {
  display: inline-block;
  position: relative;
  bottom: -7px;
+}
+.site-title a:visited {
+   color: initial;
 }
 .site-title-container {
  position: relative;
@@ -153,10 +159,12 @@ header > * {
  position: relative;
  max-width: 900px;
 }
-#search-container.closed {
+#search.closed {
  max-height: 0;
  overflow: hidden;
  padding: 0;
+ border-top: 0px;
+ border-bottom: 0px;
 }
 .nav-search-btn {
  position: absolute;
@@ -202,8 +210,7 @@ header > * {
   right: 55px;
   background: #fff;
  }
- .site-title h1 {
-  /* padding-right: 90px; */
+h1.site-title {
   max-width: 500px;
   margin: 0 auto;
  }
@@ -227,7 +234,7 @@ header > * {
   padding-right: 40px;
   padding-left: 20px;
  }
- .site-title h1 {
+ h1.site-title {
   font-size: 20px;
   line-height: 1em;
  }
@@ -263,8 +270,13 @@ h6 {
  font-size: 15px;
  line-height: 23px;
 }
+h1.site-title {
+   padding-left: 0;
+}
+h1.site-title a {
+   color: initial;
+}
 header nav > ul > li > a, header nav > ul > li > .parent-link > a, header nav ul.navigation > li > ul > li {
- text-transform: uppercase;
  font-size: 13px;
  font-weight: 600;
 }
@@ -499,8 +511,8 @@ div.exhibit-item {
  }
 }
 /* Image Showcase */
-.item-showcase {
- /*  align-items: center;*/
+/* .item-showcase {
+ align-items: center;
  justify-content: center;
  border-top: 0;
  border-bottom: 0;
@@ -509,12 +521,7 @@ div.exhibit-item {
  max-height: inherit;
  max-width: 100%;
 }
-.item-showcase a {
- /* max-height: 380px; */
- overflow: hidden;
- display: block;
- border-bottom: none !important;
-}
+
 .attachments a {
  border-bottom: none !important;
 }
@@ -530,14 +537,38 @@ div.exhibit-item {
 .item-showcase h3 a {
  height: inherit;
 }
-.item.resource .caption {
- line-height: 1.3rem;
+.item.resource .caption p {
+ font-size: 1rem;   
+ line-height: 1.2rem;
+}*/
+
+.item-showcase a {
+  max-height: 380px; 
+ overflow: hidden;
+ display: block;
+ border-bottom: none !important;
 }
-@media only screen and (max-width: 900px) {
- .item-showcase .resource.item:not(:only-child) {
-  width: 50%;
- }
+
+.item-showcase .media-embed.layout-horizontal {
+   align-items: flex-start;
 }
+.align-top .media-embed.layout-horizontal {
+   align-items: flex-start;
+}
+/* .align-bottom .media-embed.layout-horizontal {
+   align-items: end;
+}
+*/
+.max-width-800 {
+   max-width: 800px;
+}
+.max-width-700 {
+   max-width: 700px;
+}
+.max-width-900 {
+   max-width: 900px;
+}
+
 /* Item View */
 .item-display .value {
  font-size: 14px;
@@ -547,6 +578,7 @@ div.exhibit-item {
  font-family: "Barlow", Tahoma, Arial, sans-serif;
  font-weight: 700;
  font-size: 17px;
+ margin-bottom: 0;
 }
 body.resource #content > h2:first-of-type + h3 {
  background: transparent;
@@ -753,16 +785,17 @@ body.resource #content > h2:first-of-type + h3 {
  padding-top: 20px;
 }
 .figure-caption {
- font-size: .7rem;
- line-height: 1.25rem;
- margin-bottom: 1.7rem;
+ font-size: 1rem;
+ line-height: 1.2rem;
+ margin-bottom: 1.2rem;
 }
-.caption {
- font-size: .7rem;
- line-height: 1.5rem;
- margin-top: 0;
- margin-bottom: 1.7rem;
+
+.caption p {
+  font-size: 1rem;
+ line-height: 1.2rem;
+ margin-bottom: 1.2rem;
 }
+
 .d-grid {
  display: grid !important;
 }

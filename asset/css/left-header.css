@@ -32,13 +32,19 @@ body {
 	max-width: 100%;
 	min-height: calc(100vh - 60px);
 }
-.site-title h1 {
+.site-title-container {
+  padding: 0 3.38983%;
+   padding-bottom: 25px;
+  padding-top: 20px;
+}
+h1.site-title  {
 	padding-right: 0;
 }
-.site-title {
+.site-title a {
 	padding: 0 0 60px 0;
 	text-align: center;
 	display: block;
+   color: initial;
 }
 
 
@@ -72,7 +78,18 @@ header nav ul .parent a, header nav > ul > li > .parent-link > a   {
    line-height: 1.35em;
    
 }
-header nav > ul > li.active > ul > li > a::before {
+
+header nav > ul li.active ul li, header nav > ul li.active:hover ul li, header nav ul.navigation > li.active:hover > ul  {
+   height: auto; 
+   display: block;
+   border-bottom: 0px;
+   border-top: 0px;
+}
+li.active.parent {
+   border-bottom: thin solid #ddd;
+}
+
+header nav > ul > li.active > ul > li.active > a::before {
   content: "";
   display: inline-block;
   width: 5px;
@@ -82,6 +99,9 @@ header nav > ul > li.active > ul > li > a::before {
   margin-right: 4px;
   margin-bottom: 2px;
    margin-left: -15px;
+}
+header nav > ul > li.active > ul > li.active > a {
+   font-weight: bold;
 }
 
 header nav ul.navigation > li > ul {
@@ -95,7 +115,7 @@ header nav ul.navigation > li > ul {
     border-right-width: medium;
     border-bottom-width: medium;
     border-left-width: medium;
-	border-width: 1px 0;
+	border-width: 0;
 }
 header nav ul.navigation > li:hover > ul {
 	padding: 0;
@@ -105,12 +125,14 @@ header nav ul.navigation > li:hover > ul {
     border-bottom-width: medium;
     border-left-width: medium;
 	border-width: 1px 0;
+   display: none;
 }
 header nav ul.navigation > li > ul > li {
 	width: 100%;
 	padding-bottom: 0;
 	font-weight: 500;
 	padding: 0 15px;
+
 }
 
 header nav ul.navigation > li:hover > ul::after {
@@ -142,6 +164,8 @@ header nav > ul > li > ul > li.active > a::before {
 header nav ul.open > li, header nav ul li {
    border: none;
 }
+
+
 
 @media screen and (min-width: 800px) {
 	header nav ul.navigation > li:hover > ul::after {

@@ -1,11 +1,3 @@
-// Susy
-
-$susy: (
-    columns:                            12,
-    container:                          1700px,
-    global-box-sizing:                  border-box
-);
-
 // Colors
 
 $gray:                                  #ababab;
@@ -31,4 +23,22 @@ $spacing-l:                             $base-line-height;
     max-width: 1700px;
     margin-left: auto;
     margin-right: auto;
+}
+
+@mixin button {
+    border: 1px solid $light;
+    background-color: $light;
+    border-radius: 2px;
+    padding: $spacing-s;
+    display: inline-block;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 0;
+    cursor: pointer;
+    color: #000;
+
+    &:hover {
+        opacity: 1;
+    }
 }

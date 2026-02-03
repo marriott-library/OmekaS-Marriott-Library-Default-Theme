@@ -30,7 +30,7 @@ h5 {
 }
 header nav > ul > li > a, header nav > ul > li > .parent-link > a, header nav ul.navigation > li > ul > li {
 	font-family: 'Montserrat', sans-serif;
-	text-transform: uppercase;
+
 	font-size: 13px;
 	font-weight: 600;
 }
